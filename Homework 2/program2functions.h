@@ -3,10 +3,10 @@
 #define _PROGRAM2FUNCTIONS_H_
 
 int ToClosestPrime(int);
-PrintPrimesBetween(int lower_bound, int upper_bound,
+void PrintPrimesBetween(int lower_bound, int upper_bound,
 bool include_bounds = false);
 int LargestPrimeSequence(int);
-PrintAsDollarsAndCents(int cents);
+void PrintAsDollarsAndCents(int cents);
 bool MakePurchase(int purchase_cost, int twenty, int ten,
 int five, int one, int quarters, int dimes, int nickels, int pennies);
 

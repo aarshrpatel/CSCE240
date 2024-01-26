@@ -1,29 +1,60 @@
 // Copyright 2024 Aarsh Patel
 #include"./program2functions.h"
+#include<iostream>
+#include<cstdlib>
+using std::abs;
+using std::cout;
+
+bool isPrime(int number) {
+    if (number <= 1) {
+        return false;
+    }
+    for (int i = 2; i <= sqrt(number); i++) {
+        if (number % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
 
 int ToClosestPrime(int number) {
-  int n_minus = 0;
-  int n_plus = 0;
-  bool prime = false;
-  for (int i = number, int j = number; i >= 7 && !prime; i++, j--) {
-    if (i == 7) {
-      prime = true;
-    } else if (i % 2 != 0 || i % 3 != 0 || i % 5 != 0 || i % 7 != 0) {
-      prime = true;
-    } else {
-      n_plus++;
+    int distance_up = 0;
+    int distance_down = 0;
+    int i = number;
+    int j = number;
+    // Find the closest prime greater than or equal to the given number
+    while (!isPrime(i)) {
+        i++;
     }
-    if (j % 2 != 0 || j % 3 != 0 || j % 5 != 0 || j % 7 != 0) {
-      prime = true;
-    } else {
-      n_minus--;
+
+    while (!isPrime(j)) {
+      j--;
     }
+    distance_up = i - number;
+    distance_down = j - number;
+
+    // Choose the smaller absolute distance
+    if (abs(distance_down) < abs(distance_up)) {
+        return distance_down;
+    } else {
+      return distance_up;
+    }
+}
+
+void PrintPrimesBetween(int lower_bound, int upper_bound,
+bool include_bounds) {
+  int j = (include_bounds) ? (upper_bound) : (upper_bound - 1);
+  int k = (include_bounds) ? (lower_bound) : (lower_bound + 1);
+  while (!isPrime(j) && j >= k) {
+    j--;
   }
-  if (-n_minus < n_plus) {
-    return n_minus;
-  } else if (-n_minus > n_plus) {
-    return n_plus;
-  } else {
-    return n_plus;
+  for (int i = k; i <= j; i++) {
+    if (isPrime(i)) {
+      cout << i;
+
+      if (i != j) {
+        cout << ", ";
+      }
+    }
   }
 }
