@@ -1,2 +1,0 @@
-Entries must be provided in chronological order.
-12/3/2023 entered after 12/4/2023
