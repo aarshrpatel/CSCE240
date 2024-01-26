@@ -15,8 +15,7 @@ int ToClosestPrime(int number) {
     }
     if (j % 2 != 0 || j % 3 != 0 || j % 5 != 0 || j % 7 != 0) {
       prime = true;
-    }
-    else {
+    } else {
       n_minus--;
     }
   }
