@@ -58,3 +58,19 @@ bool include_bounds) {
     }
   }
 }
+
+int LargestPrimeSequence(int number) {
+  int largest_number = -1;
+  std::string number_string = std::to_string(number);
+  for (int i = 0; i < number_string.length(); i++) {
+    for (int j = i + 1; j <= number_string.length(); j++) {
+      std::string substring = number_string.substr(i, j - i);
+      int num = std::stoi(substring);
+
+      if (isPrime(num) && num > largest_number) {
+        largest_number = num;
+      }
+    }
+  }
+  return largest_number;
+}
