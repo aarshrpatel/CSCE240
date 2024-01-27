@@ -2,6 +2,7 @@
 #include"./program2functions.h"
 #include<iostream>
 #include<cstdlib>
+#include<iomanip>
 using std::abs;
 using std::cout;
 
@@ -64,8 +65,8 @@ int LargestPrimeSequence(int number) {
   std::string number_string = std::to_string(number);
   for (int i = 0; i < number_string.length(); i++) {
     for (int j = i + 1; j <= number_string.length(); j++) {
-      std::string substring = number_string.substr(i, j - i);
-      int num = std::stoi(substring);
+      std::string new_string_num = number_string.substr(i, j - i);
+      int num = std::stoi(new_string_num);
 
       if (isPrime(num) && num > largest_number) {
         largest_number = num;
@@ -73,4 +74,14 @@ int LargestPrimeSequence(int number) {
     }
   }
   return largest_number;
+}
+
+void PrintAsDollarsAndCents(int cents) {
+  if(cents > 99) {
+    std::string cents_string = std::to_string(cents);
+    std::string dollar_string = cents_string.substr(0, cents_string.length() - 2);
+    cout << "$" << dollar_string << "." << cents_string.substr(cents_string.length() - 2, 2);
+  } else {
+    cout << "$0." << std::fixed << std::setprecision(2) << cents;
+  }
 }
