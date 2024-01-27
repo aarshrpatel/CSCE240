@@ -77,11 +77,46 @@ int LargestPrimeSequence(int number) {
 }
 
 void PrintAsDollarsAndCents(int cents) {
-  if(cents > 99) {
+  if (cents > 99) {
     std::string cents_string = std::to_string(cents);
     std::string dollar_string = cents_string.substr(0, cents_string.length() - 2);
     cout << "$" << dollar_string << "." << cents_string.substr(cents_string.length() - 2, 2);
   } else {
     cout << "$0." << std::fixed << std::setprecision(2) << cents;
   }
+}
+
+bool MakePurchase(int purchase_cost, int twenty, int ten,
+int five, int one, int quarters, int dimes, int nickels, int pennies) {
+  double purchase_cost_dollars = purchase_cost / 100;
+  int wallet[] = {pennies, nickels, dimes,
+  quarters, one, five, ten, twenty};
+  double value[] = {0.01, 0.05, 0.10, 0.25, 1.00, 5.00, 10.00, 20.00};
+  double wallet_total = 0;
+  for (int i = 0; i < 8; i++) {
+    wallet_total += (wallet[i] * value[i]);
+  }
+  
+  if (wallet_total < purchase_cost_dollars) {
+    return false;
+  } else {  // Problem because did not consider multiple bills in the equation of same denomination
+    int i = 0;
+    while (i < 8) {
+      double change = 0;
+      if (purchase_cost <= value[i] && wallet[i] != 0) {
+        wallet[i]--;
+        change = value[i] - purchase_cost;
+        for (int j = i; j >= 0; j--) {
+          while (value[j] <= change) {
+            wallet[j] += 1;
+            change -= value[j];
+          }
+        }
+        return true;
+      }
+      i++;
+    }
+    return true;
+  }
+
 }
