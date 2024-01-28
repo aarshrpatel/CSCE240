@@ -88,7 +88,7 @@ void PrintAsDollarsAndCents(int cents) {
 
 bool MakePurchase(int purchase_cost, int twenty, int ten,
 int five, int one, int quarters, int dimes, int nickels, int pennies) {
-  double purchase_cost_dollars = purchase_cost / 100;
+  double purchase_cost_dollars = purchase_cost / 100.00;
   int wallet[] = {pennies, nickels, dimes,
   quarters, one, five, ten, twenty};
   double value[] = {0.01, 0.05, 0.10, 0.25, 1.00, 5.00, 10.00, 20.00};
@@ -96,25 +96,39 @@ int five, int one, int quarters, int dimes, int nickels, int pennies) {
   for (int i = 0; i < 8; i++) {
     wallet_total += (wallet[i] * value[i]);
   }
+  cout << wallet_total << std::endl;
+  cout << purchase_cost_dollars << std::endl;
   
   if (wallet_total < purchase_cost_dollars) {
     return false;
   } else {  // Problem because did not consider multiple bills in the equation of same denomination
     int i = 0;
     while (i < 8) {
-      double change = 0;
-      if (purchase_cost <= value[i] && wallet[i] != 0) {
-        wallet[i]--;
-        change = value[i] - purchase_cost;
+      double change = 0.00;
+      if (purchase_cost_dollars <= value[i] && wallet[i] != 0) {
+        wallet[i] -= 1;
+        change = value[i] - purchase_cost_dollars;
         for (int j = i; j >= 0; j--) {
           while (value[j] <= change) {
+            
             wallet[j] += 1;
             change -= value[j];
+            cout << "wallet at " << j << ": " << wallet[j] << std::endl;
           }
         }
+        cout << change << std::endl;
         return true;
       }
       i++;
+        twenty = wallet[7];
+        ten = wallet[6];
+        five = wallet[5];
+        one = wallet[4];
+        quarters = wallet[3];
+        dimes = wallet[2];
+        nickels = wallet[1];
+        pennies = wallet[0];
+        
     }
     return true;
   }
