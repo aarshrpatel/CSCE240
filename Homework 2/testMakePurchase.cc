@@ -86,21 +86,21 @@ int main() {
     cout << "Failed MakePurchase test 3:\n\treturned value = "
          << (returned_value ? "true" : "false") << ", expected true"
          << "\n\tsecond argument's ending value = " << twenties
-         << ", expected 3"
+         << ", expected 0"
          << "\n\tthird argument's ending value = " << tens
-         << ", expected 3"
+         << ", expected 0"
          << "\n\tfourth argument's ending value = " << fives
-         << ", expected 5"
+         << ", expected 0"
          << "\n\tfifth argument's ending value = " << ones
-         << ", expected 7"
+         << ", expected 0"
          << "\n\tsixth argument's ending value = " << quarters
-         << ", expected 10"
+         << ", expected 0"
          << "\n\tseventh argument's ending value = " << dimes
-         << ", expected 9"
+         << ", expected 1"
          << "\n\teighth argument's ending value = " << nickels
-         << ", expected 10"
+         << ", expected 4"
          << "\n\tninth argument's ending value = " << pennies
-         << ", expected 4" << endl;
+         << ", expected 9" << endl;
   }
 
   twenties = 5;
