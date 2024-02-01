@@ -7,7 +7,6 @@ void PrintPrimesBetween(int lower_bound, int upper_bound,
 bool include_bounds = false);
 int LargestPrimeSequence(int);
 void PrintAsDollarsAndCents(int cents);
-bool MakePurchase(int purchase_cost, int twenty, int ten,
-int five, int one, int quarters, int dimes, int nickels, int pennies);
+bool MakePurchase(int cost, int &twenty_dollars, int &ten_dollars, int &five_dollars, int &one_dollar, int &quarters, int &dimes, int &nickels, int &pennies);
 
 #endif

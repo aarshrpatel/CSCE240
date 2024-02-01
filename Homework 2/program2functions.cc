@@ -86,51 +86,71 @@ void PrintAsDollarsAndCents(int cents) {
   }
 }
 
-bool MakePurchase(int purchase_cost, int twenty, int ten,
-int five, int one, int quarters, int dimes, int nickels, int pennies) {
-  double purchase_cost_dollars = purchase_cost / 100.00;
-  int wallet[] = {pennies, nickels, dimes,
-  quarters, one, five, ten, twenty};
-  double value[] = {0.01, 0.05, 0.10, 0.25, 1.00, 5.00, 10.00, 20.00};
-  double wallet_total = 0;
-  for (int i = 0; i < 8; i++) {
-    wallet_total += (wallet[i] * value[i]);
-  }
-  cout << wallet_total << std::endl;
-  cout << purchase_cost_dollars << std::endl;
-  
-  if (wallet_total < purchase_cost_dollars) {
-    return false;
-  } else {  // Problem because did not consider multiple bills in the equation of same denomination
-    int i = 0;
-    while (i < 8) {
-      double change = 0.00;
-      if (purchase_cost_dollars <= value[i] && wallet[i] != 0) {
-        wallet[i] -= 1;
-        change = value[i] - purchase_cost_dollars;
-        for (int j = i; j >= 0; j--) {
-          while (value[j] <= change) {
-            
-            wallet[j] += 1;
-            change -= value[j];
-            cout << "wallet at " << j << ": " << wallet[j] << std::endl;
-          }
-        }
-        cout << change << std::endl;
-        return true;
-      }
-      i++;
-        twenty = wallet[7];
-        ten = wallet[6];
-        five = wallet[5];
-        one = wallet[4];
-        quarters = wallet[3];
-        dimes = wallet[2];
-        nickels = wallet[1];
-        pennies = wallet[0];
-        
+
+bool MakePurchase(int purchase_cost, int &twenty, int &ten,
+int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
+  int wallet_total =  twenty * 2000 + ten * 1000 + five * 500 + one * 100 +
+  quarters * 25 + dimes * 10 + nickels * 5 + pennies * 1;
+
+  // Checks to see if enough money is available to make the purchase
+  if (wallet_total >= purchase_cost) {
+    int change = wallet_total - purchase_cost;
+
+    while (change >= 2000 && twenty > 0) {
+      twenty--;
+      change -= 2000;
     }
-    return true;
-  }
+  } else {
+  return false;
+}
+
+
+
+  // int change = 0;
+  // if (wallet[7] >= 1 && purchase_cost >= value[7]) {
+  //   int num_bills = purchase_cost / value[7];
+  //   if (wallet[7] >= num_bills && num_bills != 0) {
+  //     wallet[7] -= num_bills;
+  //     return true;
+  //   } else {
+
+  //   }
+  // }
+  // for (int i = 0; i < wallet.length(); i++) {
+  //   if (purchase_cost <= value[i] && wallet[i] != 0)
+  // }  
+
+
+
+
+  // // Problem because did not consider multiple bills in the equation of same denomination
+  // int i = 0;
+  // int k = 1;
+  // //Goes through the arrays
+  // while (i < 8) {
+  //   double change = 0.00;
+  //   //Checks to see if cost is less than the value at the index i
+  //   if (purchase_cost_dollars <= (value[i] * k) && wallet[i] >= k) {
+  //     wallet[i] -= k;
+  //     change += (value[i] * k) - purchase_cost_dollars;
+  //     for (int j = i; j >= 0; j--) {
+  //       while (value[j] <= change) {
+  //         cout << change << std::endl;
+  //         wallet[j] += 1;
+  //         change -= value[j];
+  //       }
+  //     }
+  //   }
+  //   i++;
+  //   twenty = wallet[7];
+  //   ten = wallet[6];
+  //   five = wallet[5];
+  //   one = wallet[4];
+  //   quarters = wallet[3];
+  //   dimes = wallet[2];
+  //   nickels = wallet[1];
+  //   pennies = wallet[0];
+  //   return true;
+  // }
 
 }
