@@ -94,15 +94,21 @@ int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
 
   // Checks to see if enough money is available to make the purchase
   if (wallet_total >= purchase_cost) {
-    int change = wallet_total - purchase_cost;
-
-    while (change >= 2000 && twenty > 0) {
-      twenty--;
-      change -= 2000;
+    int change_value = 0;
+    int cost = purchase_cost;
+    while (cost > 0) {
+      if (cost > 1000 && twenty != 0) {
+        twenty--;
+        change_value = 2000;
+        cost -= 2000;
+      } else if (cost > 500 && ten)
+      
     }
+
+    while (purchase_cost >)
   } else {
   return false;
-}
+  }
 
 
 
