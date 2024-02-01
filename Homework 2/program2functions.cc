@@ -86,8 +86,8 @@ void PrintAsDollarsAndCents(int cents) {
   }
 }
 
-bool MakePurchase(int purchase_cost, int twenty, int ten,
-int five, int one, int quarters, int dimes, int nickels, int pennies) {
+bool MakePurchase(int purchase_cost, int &twenty, int &ten,
+int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
   double purchase_cost_dollars = purchase_cost / 100.00;
   int wallet[] = {pennies, nickels, dimes,
   quarters, one, five, ten, twenty};
