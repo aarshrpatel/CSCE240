@@ -120,14 +120,14 @@ int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
         return true;
       }
       i++;
-        twenty = wallet[7];
-        ten = wallet[6];
-        five = wallet[5];
-        one = wallet[4];
-        quarters = wallet[3];
-        dimes = wallet[2];
-        nickels = wallet[1];
-        pennies = wallet[0];
+        // twenty = wallet[7];
+        // ten = wallet[6];
+        // five = wallet[5];
+        // one = wallet[4];
+        // quarters = wallet[3];
+        // dimes = wallet[2];
+        // nickels = wallet[1];
+        // pennies = wallet[0];
         
     }
     return true;
