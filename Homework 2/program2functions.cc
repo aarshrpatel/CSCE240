@@ -6,6 +6,7 @@
 using std::abs;
 using std::cout;
 
+// Calculates if the argument is a prime number
 bool isPrime(int number) {
     if (number <= 1) {
         return false;
@@ -18,6 +19,7 @@ bool isPrime(int number) {
     return true;
 }
 
+// Finds the closest prime number up and down from the inputted argument
 int ToClosestPrime(int number) {
     int distance_up = 0;
     int distance_down = 0;
@@ -42,13 +44,21 @@ int ToClosestPrime(int number) {
     }
 }
 
+// Prints the prime numbers between to bounds
 void PrintPrimesBetween(int lower_bound, int upper_bound,
 bool include_bounds) {
+  // Upper bound check to see if to include
   int j = (include_bounds) ? (upper_bound) : (upper_bound - 1);
+  // Lower bound check to see if to include
   int k = (include_bounds) ? (lower_bound) : (lower_bound + 1);
+  // Shifts through the values in the range
   while (!isPrime(j) && j >= k) {
     j--;
   }
+  /**
+  * If the value at i is prime then prints it and checks if a 
+  * comma is needed.
+  */ 
   for (int i = k; i <= j; i++) {
     if (isPrime(i)) {
       cout << i;
@@ -60,6 +70,7 @@ bool include_bounds) {
   }
 }
 
+// Gets the largest prime sequence from a string of numbers
 int LargestPrimeSequence(int number) {
   int largest_number = -1;
   std::string number_string = std::to_string(number);
@@ -76,61 +87,84 @@ int LargestPrimeSequence(int number) {
   return largest_number;
 }
 
+// Prints the cents value as dollars and cents
 void PrintAsDollarsAndCents(int cents) {
   if (cents > 99) {
     std::string cents_string = std::to_string(cents);
-    std::string dollar_string = cents_string.substr(0, cents_string.length() - 2);
-    cout << "$" << dollar_string << "." << cents_string.substr(cents_string.length() - 2, 2);
+    std::string dollar_string =
+    cents_string.substr(0, cents_string.length() - 2);
+    cout << "$" << dollar_string << "."
+    << cents_string.substr(cents_string.length() - 2, 2);
   } else {
     cout << "$0." << std::fixed << std::setprecision(2) << cents;
   }
 }
 
-bool MakePurchase(int purchase_cost, int &twenty, int &ten,
-int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
-  double purchase_cost_dollars = purchase_cost / 100.00;
+// Makes a purchase with the amount of bills given
+bool MakePurchase(int purchase_cost, int& twenty, int& ten,
+int& five, int& one, int& quarters, int& dimes, int& nickels, int& pennies) {
   int wallet[] = {pennies, nickels, dimes,
   quarters, one, five, ten, twenty};
-  double value[] = {0.01, 0.05, 0.10, 0.25, 1.00, 5.00, 10.00, 20.00};
-  double wallet_total = 0;
+  int value[] = {1, 5, 10, 25, 100, 500, 1000, 2000};
+  int wallet_total = 0;
+  // Adds up the total in the wallet
   for (int i = 0; i < 8; i++) {
     wallet_total += (wallet[i] * value[i]);
   }
-  cout << wallet_total << std::endl;
-  cout << purchase_cost_dollars << std::endl;
-  
-  if (wallet_total < purchase_cost_dollars) {
-    return false;
-  } else {  // Problem because did not consider multiple bills in the equation of same denomination
-    int i = 0;
-    while (i < 8) {
-      double change = 0.00;
-      if (purchase_cost_dollars <= value[i] && wallet[i] != 0) {
-        wallet[i] -= 1;
-        change = value[i] - purchase_cost_dollars;
-        for (int j = i; j >= 0; j--) {
-          while (value[j] <= change) {
-            
-            wallet[j] += 1;
-            change -= value[j];
-            cout << "wallet at " << j << ": " << wallet[j] << std::endl;
-          }
-        }
-        cout << change << std::endl;
-        return true;
-      }
-      i++;
-        // twenty = wallet[7];
-        // ten = wallet[6];
-        // five = wallet[5];
-        // one = wallet[4];
-        // quarters = wallet[3];
-        // dimes = wallet[2];
-        // nickels = wallet[1];
-        // pennies = wallet[0];
-        
-    }
-    return true;
-  }
 
+  // Checks if the wallet has enough to make the purchase
+  if (wallet_total >= purchase_cost) {
+    /**
+     * Runs through each denomination and checks if it 
+     * needs to be removed to make the purchase
+     * */ 
+    for (int i = 7; i > 1; i--) {
+      if (wallet[i] > 0 && purchase_cost > 0) {
+        while (abs(value[i] - purchase_cost)
+        < abs(value[i - 1] - purchase_cost)) {
+          wallet[i] -= 1;
+          purchase_cost -= value[i];
+        }
+      }
+    }
+    // Special case for nickels and pennies
+    while (abs(value[1] - purchase_cost) > 1
+    && wallet[1] > 0 && purchase_cost > 0) {
+      wallet[1] -= 1;
+      purchase_cost -= value[1];
+    }
+    while (abs(value[0] - purchase_cost) > 0
+    && wallet[0] > 0 && purchase_cost > 0) {
+      wallet[0] -= 1;
+      purchase_cost -= value[0];
+    }
+
+    // Puts change back into wallet
+    if (purchase_cost < 0) {
+      int change = -purchase_cost;
+      for (int i = 7; i > 0; i--) {
+        while (abs(value[i] - change) <= abs(value[i - 1] - change)
+        && change - value[i] >= 0) {
+        wallet[i] += 1;
+        change -= value[i];
+        }
+      }
+      while (change - 1 >= 0) {
+        wallet[0] += 1;
+        change--;
+      }
+    }
+    // Set values to new values.
+    pennies = wallet[0];
+    nickels = wallet[1];
+    dimes = wallet[2];
+    quarters = wallet[3];
+    one = wallet[4];
+    five = wallet[5];
+    ten = wallet[6];
+    twenty = wallet[7];
+    return true;
+  } else {
+    return false;
+  }
 }
