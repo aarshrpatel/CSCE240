@@ -91,21 +91,10 @@ bool MakePurchase(int purchase_cost, int &twenty, int &ten,
 int &five, int &one, int &quarters, int &dimes, int &nickels, int &pennies) {
   int wallet_total =  twenty * 2000 + ten * 1000 + five * 500 + one * 100 +
   quarters * 25 + dimes * 10 + nickels * 5 + pennies * 1;
-
+  
   // Checks to see if enough money is available to make the purchase
   if (wallet_total >= purchase_cost) {
-    int change_value = 0;
-    int cost = purchase_cost;
-    while (cost > 0) {
-      if (cost > 1000 && twenty != 0) {
-        twenty--;
-        change_value = 2000;
-        cost -= 2000;
-      } else if (cost > 500 && ten)
-      
-    }
 
-    while (purchase_cost >)
   } else {
   return false;
   }
