@@ -4,5 +4,6 @@
 
 void RemoveValues(int array[], int size, int value);
 void ShiftArray(int array[], int size, int shift);
+bool IsAnagram(const char *str1, const char *str2, bool case_sensitive = false);
 
-#endif
+#endif // _PROGRAM3FUNCTIONS_H_
