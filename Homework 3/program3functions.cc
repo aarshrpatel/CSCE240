@@ -3,7 +3,7 @@
 #include<iostream>
 #include<iomanip>
 #include"./p3compares.h"
-
+using std::cout;
 
 // Removes all instances of a value from an array
 void RemoveValues(int array[], int size, int value) {
@@ -43,55 +43,97 @@ void ShiftArray(int array[], int size, int shift) {
   }
 }
 
-bool IsAnagram(const char str1[], const char str2[], bool case_sensitive) {
+bool IsAnagram(const char str_one[], const char str_two[], bool case_sensitive) {
 
-  int count1[52] = {0};
-  int count2[52] = {0};
-  for ( int i = 0; i < 52; i++ ) {
-    if ( str1[i] >= 'A' && str1[i] <= 'Z' ) {
-      count1[str1[i] - 'A']++;
-    } else if ( str1[i] >= 'a' && str1[i] <= 'z' ) {
-      count1[str1[i] - 'a' + 26]++;
+  int count_one[52] = {0};
+  int count_two[52] = {0};
+  
+  for ( int i = 0; str_one[i] != '\0'; i++ ) {
+    if ( str_one[i] >= 'A' && str_one[i] <= 'Z' ) {
+      count_one[str_one[i] - 'A']++;
+    } else if ( str_one[i] >= 'a' && str_one[i] <= 'z' ) {
+      count_one[str_one[i] - 'a' + 26]++;
     }
   }
 
-  for ( int i = 0; i < 52; i++ ) {
-    if ( str2[i] >= 'A' && str2[i] <= 'Z' ) {
-      count2[str2[i] - 'A']++;
-    } else if ( str2[i] >= 'a' && str2[i] <= 'z' ) {
-      count2[str2[i] - 'a' + 26]++;
+  for ( int i = 0; str_two[i] != '\0'; i++ ) {
+    if ( str_two[i] >= 'A' && str_two[i] <= 'Z' ) {
+      count_two[str_two[i] - 'A']++;
+    } else if ( str_two[i] >= 'a' && str_two[i] <= 'z' ) {
+      count_two[str_two[i] - 'a' + 26]++;
     } 
   }
-  char letter = 'A';
-
-  for ( int i = 0; i < 26; i++ ) {
-    std::cout << letter++ << " ";
-  }
-
-  letter = 'a';
-  for ( int i = 0; i < 26; i++ ) {
-    std::cout << letter++ << " ";
-  }
-
-  std::cout << std::endl;
-
-  for ( int i = 0; i < 52; i++ ) {
-    std::cout << count1[i] << " ";
-  }
-
-  std::cout << std::endl;
   
-  for ( int i = 0; i < 52; i++ ) {
-    std::cout << count2[i] << " ";
-  }
-  
-  for ( int i = 0; i < 52; i++ ) {
-    if (case_sensitive && count1[i] != count2[i] ) {
+  for ( int i = 0; i < 52 && case_sensitive; i++ ) {
+    if ( count_one[i] != count_two[i] ) {
       return false;
-    } else if ( !case_sensitive && (count1[i] + count1[26 + i]) != (count2[i] + count2[26 + i]) ) {
+    } 
+  }
+  for ( int i = 0; i < 26 && !case_sensitive; i++ ) {
+    if ( (count_one[i] + count_one[26 + i]) != (count_two[i] + count_two[26 + i]) ) {
       return false;
     }
   }
 
   return true;
+}
+
+bool Replace1With2(char array[], int size, char replace_this, char with_this_one, char with_this_two) {
+  // Counts the empty spaces and occurrence of the character to replace
+  int empty_count = 0, replace_count = 0;
+  for ( int i = 0; i < size; i++ ) {
+    if ( array[i] == '\0' ) {
+      empty_count++;
+    } else if ( array[i] == replace_this ) {
+      replace_count++;
+    }
+  }
+
+  // Check to see if there is enough space to return
+  if ( empty_count < (replace_count * 2) ) {
+    return false;
+  }
+
+  for ( int i = size; i > size; i-- ) {
+    if ( array[i] == replace_this ) {
+      array[i] = with_this_one;
+      int j = i + 1;
+      char temp;
+      while ( j < size ) {
+        temp = array[j + 1];
+        array[j + 1] = array[j];
+         
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+  // for ( int i = 0; i < size; i++ ) {
+  //   if ( array[i] == replace_this ) {
+  //     count++;
+  //   }
+  // }
+  // if ( count == 0 ) {
+  //   return false;
+  // }
+  // int new_size = size + count;
+  // for ( int i = size; i < new_size; i++ ) {
+  //   array[i] = ' ';
+  // }
+  // for ( int i = size - 1; i >= 0; i-- ) {
+  //   if ( array[i] == replace_this ) {
+  //     array[i + count] = with_this_two;
+  //     array[i + count - 1] = with_this_one;
+  //     count--;
+  //   } else {
+  //     array[i + count] = array[i];
+  //   }
+  // }
+  // return true;
 }
