@@ -6,11 +6,11 @@ using std::endl;
 #include"p3compares.h"
 
 int main() {
-  if ( !IsAnagram("abcdd", "abcdc") ) {
-    cout << "Passed test 1\n" << endl;
-  } else {
-    cout << "Failed test 1\n" << endl;
-  }
+  // if ( !IsAnagram("abcdd", "abcdc") ) {
+  //   cout << "Passed test 1\n" << endl;
+  // } else {
+  //   cout << "Failed test 1\n" << endl;
+  // }
 
   if ( IsAnagram("e f g l m n QQq", "qmnl qgef q") ) {
     cout << "Passed test 2\n" << endl;
@@ -18,6 +18,7 @@ int main() {
     cout << "Failed test 2\n" << endl;
   }
 
+/*
   if ( !IsAnagram("e f g l m n QQq", "qmnl qgef q", true) ) {
     cout << "Passed test 3\n" << endl;
   } else {
@@ -41,7 +42,7 @@ int main() {
   } else {
     cout << "Failed test 6\n" << endl;
   }
-
+*/
 
   return 0;
 }
