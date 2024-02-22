@@ -1,9 +1,9 @@
 // Copyright 2024 Aarsh Patel
-#include"./program3functions.h"
-#include<iostream>
-#include<iomanip>
-#include"./p3compares.h"
-using std::cout;
+#include "./program3functions.h"
+#include <iostream>
+#include <iomanip>
+#include "./p3compares.h"
+extern const int kSquareSize;
 
 // Removes all instances of a value from an array
 void RemoveValues(int array[], int size, int value) {
@@ -90,50 +90,36 @@ bool Replace1With2(char array[], int size, char replace_this, char with_this_one
   }
 
   // Check to see if there is enough space to return
-  if ( empty_count < (replace_count * 2) ) {
+  if ( empty_count < (replace_count + 1) ) {
     return false;
   }
 
-  for ( int i = size; i > size; i-- ) {
+  for ( int i = 0; i < size; i++ ) {
     if ( array[i] == replace_this ) {
       array[i] = with_this_one;
-      int j = i + 1;
-      char temp;
-      while ( j < size ) {
-        temp = array[j + 1];
-        array[j + 1] = array[j];
-         
+      
+      for ( int j = size - 1; j > i + 1; j-- ) {
+        array[j] = array[j - 1];
       }
+
+      array[i + 1] = with_this_two;
+      i++;
     }
   }
 
+  return true;
+}
 
-
-
-
-
-
-
-  // for ( int i = 0; i < size; i++ ) {
-  //   if ( array[i] == replace_this ) {
-  //     count++;
-  //   }
-  // }
-  // if ( count == 0 ) {
-  //   return false;
-  // }
-  // int new_size = size + count;
-  // for ( int i = size; i < new_size; i++ ) {
-  //   array[i] = ' ';
-  // }
-  // for ( int i = size - 1; i >= 0; i-- ) {
-  //   if ( array[i] == replace_this ) {
-  //     array[i + count] = with_this_two;
-  //     array[i + count - 1] = with_this_one;
-  //     count--;
-  //   } else {
-  //     array[i + count] = array[i];
-  //   }
-  // }
-  // return true;
+void SwapRowsAndColumns(int array[10][10]) {
+  int temp[kSquareSize][kSquareSize];
+  for ( int i = 0; i < kSquareSize; i++ ) {
+    for ( int j = 0; j < kSquareSize; j++ ) {
+      temp[i][j] = array[i][j];
+    }
+  }
+  for ( int i = 0; i < kSquareSize; i++ ) {
+    for ( int j = 0; j < kSquareSize; j++ ) {
+      array[i][j] = temp[j][i];
+    }
+  }
 }
