@@ -3,7 +3,6 @@
 #include <iostream>
 #include <iomanip>
 #include "./p3compares.h"
-extern const int kSquareSize;
 
 // Removes all instances of a value from an array
 void RemoveValues(int array[], int size, int value) {
@@ -110,16 +109,17 @@ bool Replace1With2(char array[], int size, char replace_this, char with_this_one
   return true;
 }
 
-void SwapRowsAndColumns(int array[10][10]) {
-  int temp[kSquareSize][kSquareSize];
-  for ( int i = 0; i < kSquareSize; i++ ) {
-    for ( int j = 0; j < kSquareSize; j++ ) {
-      temp[i][j] = array[i][j];
+void SwapRowsAndColumns(int array[kSquareSize][kSquareSize]) {
+  int temp[10][10];
+  for ( int column = 0; column < 10; column++ ) {
+    for ( int row = 0; row < 10; row++ ) {
+      temp[column][row] = array[row][column];
     }
   }
-  for ( int i = 0; i < kSquareSize; i++ ) {
-    for ( int j = 0; j < kSquareSize; j++ ) {
-      array[i][j] = temp[j][i];
+
+  for ( int column = 0; column < 10; column++ ) {
+    for ( int row = 0; row < 10; row++ ) {
+      array[column][row] = temp[column][row];
     }
   }
 }
