@@ -13,40 +13,39 @@ void RemoveValues(int array[], int size, int value) {
       continue;
     }
     array[i - count] = array[i];
-    
   }
   for ( int j = (size - count); j < size; j++ ) {
     array[j] = -999;
   }
 }
 
-void ShiftArray(int array[], int size, int shift) {
-  int temp[size];
-  for ( int i = 0; i < size; i++ ) {
+void ShiftArray(int array[], int kSize, int shift) {
+  int temp[kSize];
+  for ( int i = 0; i < kSize; i++ ) {
     temp[i] = array[i];
   }
-  for ( int i = 0; i < size; i++ ) {
-    while ( shift > size) {
-      shift = shift - size;
-    } 
-    while ( -shift > size ) {
-      shift = shift + size;
-    } 
+  for ( int i = 0; i < kSize; i++ ) {
+    while ( shift > kSize ) {
+      shift = shift - kSize;
+    }
+    while ( -shift > kSize ) {
+      shift = shift + kSize;
+    }
     if ( i - shift < 0 ) {
-      array[i - shift + size] = temp[i];
-    } else if ( i - shift >= size ) {
-      array[i - shift - size] = temp[i];
+      array[i - shift + kSize] = temp[i];
+    } else if ( i - shift >= kSize ) {
+      array[i - shift - kSize] = temp[i];
     } else {
       array[i - shift] = temp[i];
     }
   }
 }
 
-bool IsAnagram(const char str_one[], const char str_two[], bool case_sensitive) {
-
+bool IsAnagram(const char str_one[], const char str_two[],
+bool case_sensitive) {
   int count_one[52] = {0};
   int count_two[52] = {0};
-  
+
   for ( int i = 0; str_one[i] != '\0'; i++ ) {
     if ( str_one[i] >= 'A' && str_one[i] <= 'Z' ) {
       count_one[str_one[i] - 'A']++;
@@ -60,16 +59,17 @@ bool IsAnagram(const char str_one[], const char str_two[], bool case_sensitive) 
       count_two[str_two[i] - 'A']++;
     } else if ( str_two[i] >= 'a' && str_two[i] <= 'z' ) {
       count_two[str_two[i] - 'a' + 26]++;
-    } 
+    }
   }
-  
+
   for ( int i = 0; i < 52 && case_sensitive; i++ ) {
     if ( count_one[i] != count_two[i] ) {
       return false;
-    } 
+    }
   }
   for ( int i = 0; i < 26 && !case_sensitive; i++ ) {
-    if ( (count_one[i] + count_one[26 + i]) != (count_two[i] + count_two[26 + i]) ) {
+    if ( (count_one[i] + count_one[26 + i]) !=
+    (count_two[i] + count_two[26 + i]) ) {
       return false;
     }
   }
@@ -77,7 +77,8 @@ bool IsAnagram(const char str_one[], const char str_two[], bool case_sensitive) 
   return true;
 }
 
-bool Replace1With2(char array[], int size, char replace_this, char with_this_one, char with_this_two) {
+bool Replace1With2(char array[], int size, char replace_this,
+char with_this_one, char with_this_two) {
   // Counts the empty spaces and occurrence of the character to replace
   int empty_count = 0, replace_count = 0;
   for ( int i = 0; i < size; i++ ) {
@@ -96,7 +97,7 @@ bool Replace1With2(char array[], int size, char replace_this, char with_this_one
   for ( int i = 0; i < size; i++ ) {
     if ( array[i] == replace_this ) {
       array[i] = with_this_one;
-      
+
       for ( int j = size - 1; j > i + 1; j-- ) {
         array[j] = array[j - 1];
       }
