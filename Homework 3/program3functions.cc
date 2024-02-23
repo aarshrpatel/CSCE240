@@ -6,24 +6,30 @@
 
 // Removes all instances of a value from an array
 void RemoveValues(int array[], int size, int value) {
+  // Counts the number of occurrences of the value
   int count = 0;
   for ( int i = 0; i < size; i++ ) {
     if ( array[i] == value ) {
       count++;
       continue;
     }
+    // Shifts the array to the left
     array[i - count] = array[i];
   }
+  // Fills the rest of the array with -999
   for ( int j = (size - count); j < size; j++ ) {
     array[j] = -999;
   }
 }
 
+// Shifts the array by a given amount
 void ShiftArray(int array[], int kSize, int shift) {
+  // Creates a temporary array to store the original values
   int temp[kSize];
   for ( int i = 0; i < kSize; i++ ) {
     temp[i] = array[i];
   }
+  // Shifts all the values to the new position
   for ( int i = 0; i < kSize; i++ ) {
     while ( shift > kSize ) {
       shift = shift - kSize;
@@ -41,11 +47,13 @@ void ShiftArray(int array[], int kSize, int shift) {
   }
 }
 
+// Checks if two strings are anagrams
 bool IsAnagram(const char str_one[], const char str_two[],
 bool case_sensitive) {
   int count_one[52] = {0};
   int count_two[52] = {0};
 
+  // Counts the number of occurrences of each character in the first string
   for ( int i = 0; str_one[i] != '\0'; i++ ) {
     if ( str_one[i] >= 'A' && str_one[i] <= 'Z' ) {
       count_one[str_one[i] - 'A']++;
@@ -54,6 +62,7 @@ bool case_sensitive) {
     }
   }
 
+  // Counts the number of occurrences of each character in the second string
   for ( int i = 0; str_two[i] != '\0'; i++ ) {
     if ( str_two[i] >= 'A' && str_two[i] <= 'Z' ) {
       count_two[str_two[i] - 'A']++;
@@ -62,6 +71,7 @@ bool case_sensitive) {
     }
   }
 
+  // Compares the two arrays to see if they are anagrams
   for ( int i = 0; i < 52 && case_sensitive; i++ ) {
     if ( count_one[i] != count_two[i] ) {
       return false;
@@ -77,6 +87,7 @@ bool case_sensitive) {
   return true;
 }
 
+// Replaces all instances of a character with two characters
 bool Replace1With2(char array[], int size, char replace_this,
 char with_this_one, char with_this_two) {
   // Counts the empty spaces and occurrence of the character to replace
@@ -94,6 +105,7 @@ char with_this_one, char with_this_two) {
     return false;
   }
 
+  // Replaces the character with the two new characters
   for ( int i = 0; i < size; i++ ) {
     if ( array[i] == replace_this ) {
       array[i] = with_this_one;
@@ -110,16 +122,19 @@ char with_this_one, char with_this_two) {
   return true;
 }
 
+// Swaps the rows and columns of a 2D array
 void SwapRowsAndColumns(int array[kSquareSize][kSquareSize]) {
-  int temp[10][10];
-  for ( int column = 0; column < 10; column++ ) {
-    for ( int row = 0; row < 10; row++ ) {
+  // Creates a temporary array to store the changed values
+  int temp[kSquareSize][kSquareSize];
+  for ( int column = 0; column < kSquareSize; column++ ) {
+    for ( int row = 0; row < kSquareSize; row++ ) {
       temp[column][row] = array[row][column];
     }
   }
 
-  for ( int column = 0; column < 10; column++ ) {
-    for ( int row = 0; row < 10; row++ ) {
+  // Copies the temporary array to the original array
+  for ( int column = 0; column < kSquareSize; column++ ) {
+    for ( int row = 0; row < kSquareSize; row++ ) {
       array[column][row] = temp[column][row];
     }
   }
