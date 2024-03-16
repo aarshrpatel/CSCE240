@@ -12,6 +12,12 @@ using std::string;
 //   whereto << mu._unit_name << " " << mu._unit_symbol << "" << mu._unit_amount;
 //   return whereto;
 // }
+MonetaryUnit::MonetaryUnit(string name, string symbol, double amount) :
+    _unit_name("US dollars"), _unit_symbol("$"), _unit_amount(1) {
+  SetName(name);
+  SetSymbol(symbol);
+  SetAmountEquivalentTo1Dollar(amount);
+}
 
 bool MonetaryUnit::SetName(string name) {
   if ( name.length() >= 1 ) {
@@ -34,11 +40,8 @@ bool MonetaryUnit::SetAmountEquivalentTo1Dollar(double amount) {
   return _unit_amount == amount;
 }
 
-
-
-MonetaryUnit::MonetaryUnit(string name, string symbol, double amount) : 
-            _unit_name("US dollars"), _unit_symbol("$"), _unit_amount(1){
-  SetName(name);
-  SetSymbol(symbol);
-  SetAmountEquivalentTo1Dollar(amount);
+bool MonetaryUnit::operator==(const MonetaryUnit& anObject) const {
+  return (_unit_name == anObject._unit_name && _unit_symbol == anObject._unit_symbol
+          && _unit_amount == anObject._unit_amount);
 }
+
