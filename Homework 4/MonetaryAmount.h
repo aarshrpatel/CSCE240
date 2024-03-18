@@ -7,27 +7,37 @@ using std::ostream;
 
 class MonetaryAmount {
  public:
-  explicit MonetaryAmount(double value = 0, const MonetaryUnit& object = MonetaryUnit("US dollars", "$", 1));
+  // Constructor with default values
+  explicit MonetaryAmount(double value = 0,
+    const MonetaryUnit& object = MonetaryUnit("US dollars", "$", 1));
+
+  // Destructor
   ~MonetaryAmount() {}
 
+  // Getters for private data members
   double GetValue() const { return _value; }
   MonetaryUnit GetUnit() const { return _object; }
 
+  // Convert the value to the given unit
   void ConvertToUnit(const MonetaryUnit& object);
 
+  // static data members
   static bool display_unit_name;
 
+  // Overloaded operators
   bool operator==(const MonetaryAmount& anObject) const;
   bool operator<(const MonetaryAmount& anObject) const;
   bool operator>(const MonetaryAmount& anObject) const;
-  
-  friend ostream& operator<<(ostream&, const MonetaryUnit&);
-  friend MonetaryAmount& operator+(const MonetaryUnit& one, const MonetaryUnit& two);
+
+  // Overloaded friend operators
+  friend ostream& operator<<(ostream& os, const MonetaryAmount& mu);
+  friend MonetaryAmount operator+(const MonetaryAmount& one,
+    const MonetaryAmount& two);
 
 
  private:
-  double _value;
-  MonetaryUnit _object;
+  double _value;  // Value of the amount
+  MonetaryUnit _object;  // Unit of the amount
 };
 
-#endif
+#endif  // _MONETARY_AMOUNT_H_
