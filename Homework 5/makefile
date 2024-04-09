@@ -21,14 +21,17 @@ testArtist : testArtist.cc SongRecording.o
 	$(link) $^
 	./a.out
 
+#Does Not Work
 testSoundRecordingConstructors1 : testSoundRecordingConstructors1.cc SongRecording.o
 	$(link) $^
 	./a.out
 
+#Core dumped
 testSoundRecordingCopyConstructor : testSoundRecordingCopyConstructor.cc SongRecording.o
 	$(link) $^
 	./a.out
 
+#Core dumped
 testSoundRecordingAssignment : testSoundRecordingAssignment.cc SongRecording.o
 	$(link) $^
 	./a.out
