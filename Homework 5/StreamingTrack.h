@@ -44,5 +44,6 @@ namespace csce240_programming_assignment_5 {
    void RemoveGenre(const string& genre);
  
  };
+}
 
 #endif  // _STREAMINGTRACK_H_

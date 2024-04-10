@@ -10,9 +10,12 @@ namespace csce240_programming_assignment_5 {
 // Default Constructor
 SongRecording::SongRecording(const string& title,
  const string& primary_artist, int duration, int num_artists) :
- title_(title), num_artists_(num_artists), duration_(duration) {
+ title_(title), num_artists_(num_artists > 0 ? num_artists : 1), duration_(duration) {
   artists_ = new string[num_artists_];
-  SetArtist(primary_artist, 0);
+  SetArtist(primary_artist);
+  for (int i = 1; i < num_artists_; i++) {
+    artists_[i] = "unknown";
+  }
 }
 
 // Copy Constructor
@@ -47,11 +50,14 @@ SongRecording::~SongRecording() {
 }
 
 // Getters
-string SongRecording::GetArtist(int index) const {
+string SongRecording::GetArtist(const int index) const {
   if (index < 1 || index > num_artists_) {
     return "out of bounds";
   }
-  return artists_[index];
+  if (artists_[index - 1].length() == 0) {
+    return "unknown";
+  }
+  return artists_[index - 1];
 }
 
 // Setters
@@ -64,17 +70,17 @@ void SongRecording::SetTitle(const string title) {
 void SongRecording::SetNumArtists(const int num_artists) {
   if (num_artists > 0) {
     num_artists_ = num_artists;
+    delete[] artists_;
+    artists_ = new string[num_artists_];
   }
-  delete[] artists_;
-  artists_ = new string[num_artists_];
 }
 
 void SongRecording::SetArtist(const string& artist_name, int index) {
-  if (index < 0 || index > num_artists_
-   || artist_name.length() == 0) {
+  if (index < 1 || index > num_artists_ 
+      || artist_name.length() == 0) {
     return;
   }
-  artists_[index] = artist_name;
+  artists_[index - 1] = artist_name;
 }
 
 void SongRecording::SetTrackLength(const int duration) {

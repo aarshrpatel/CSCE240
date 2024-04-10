@@ -37,7 +37,7 @@ int main() {
   if ( x1.GetArtist() == s ) {
     cout << "Passed SetArtist one bad argument test" << endl;
   } else {
-    cout << "Failed SetArtist one bad argument test" << endl;
+    cout << "Get Artist: " << x1.GetArtist() << " expected(" << s << ") Failed SetArtist one bad argument test" << endl;
   }
 
   x1.SetArtist("Gary Clark, Jr.", 2);

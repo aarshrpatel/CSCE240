@@ -32,8 +32,8 @@ namespace csce240_programming_assignment_5 {
    // Getters
    string GetTitle() const{return title_;}
    int GetNumArtists() const{return num_artists_;}
-   string GetArtist(int index = 1) const;
-   int GetTrackLength() const{return duration_;}
+   string GetArtist(const int index = 1) const;
+   int GetTrackLength() const{return duration_ < 0 ? 0 : duration_;}
  
    // Setters
    void SetTitle(const string title);
