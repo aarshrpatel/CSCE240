@@ -21,17 +21,14 @@ testArtist : testArtist.cc SongRecording.o
 	$(link) $^
 	./a.out
 
-#Does Not Work
 testSoundRecordingConstructors1 : testSoundRecordingConstructors1.cc SongRecording.o
 	$(link) $^
 	./a.out
 
-#Core dumped
 testSoundRecordingCopyConstructor : testSoundRecordingCopyConstructor.cc SongRecording.o
 	$(link) $^
 	./a.out
 
-#Core dumped
 testSoundRecordingAssignment : testSoundRecordingAssignment.cc SongRecording.o
 	$(link) $^
 	./a.out
@@ -47,6 +44,7 @@ testAddGenre : testAddGenre.cc StreamingTrack.o SongRecording.o
 	$(link) $^
 	./a.out
 
+#core dumped
 testRemoveAndAddGenre : testRemoveAndAddGenre.cc StreamingTrack.o SongRecording.o
 	$(link) $^
 	./a.out
