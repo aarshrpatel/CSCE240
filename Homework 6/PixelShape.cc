@@ -7,7 +7,6 @@ namespace CSCE240_Program6 {
 PixelShape::PixelShape(const std::string& name, char pixel) :
   name_((name.length() < 1 || name == "") ? "?" : name),
   pixel_(pixel) {
-
   if (pixel < 33 || pixel > 126) {
     this->pixel_ = '*';
   }
