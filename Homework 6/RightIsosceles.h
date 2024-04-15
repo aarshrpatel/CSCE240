@@ -1,6 +1,6 @@
-//Copyright 2024 Aarsh Patel
-#ifndef RIGHTISOSCELES_H
-#define RIGHTISOSCELES_H
+// Copyright 2024 Aarsh Patel
+#ifndef RIGHTISOSCELES_H_
+#define RIGHTISOSCELES_H_
 
 #include "PixelShape.h"
 
@@ -12,7 +12,7 @@ class RightIsosceles : public PixelShape {
 
  public:
   // Constructor with default values
-  RightIsosceles(int leg = 2, char pixel = '*');
+  explicit RightIsosceles(int leg = 2, char pixel = '*');
 
   // Virtual destructor
   virtual ~RightIsosceles();
@@ -28,6 +28,6 @@ class RightIsosceles : public PixelShape {
   void Print(bool fill = true) const override;
 };
 
-} // namespace CSCE240_Program6
+}  // namespace CSCE240_Program6
 
-#endif // RIGHTISOSCELES_H
+#endif  // RIGHTISOSCELES_H_

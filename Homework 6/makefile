@@ -3,12 +3,10 @@ flags = -std=c++17 -Wall -I .
 PixelShape.o : PixelShape.cc PixelShape.h
 	g++ $(flags) -c $< -I .
 
-# Failed constructor with "" argument test. GetName() returned  expected ?
 testPixelShapeName : testPixelShapeName.cc PixelShape.o
 	g++ $(flags) $^
 	./a.out
 
-# Failed constructor with '\n' argument test. GetPixel() returned expected *
 testPixelShapePixel : testPixelShapePixel.cc PixelShape.o
 	g++ $(flags) $^
 	./a.out
@@ -20,7 +18,6 @@ testRightIsoscelesName : testRightIsoscelesName.cc RightIsosceles.o PixelShape.o
 	g++ $(flags) $^
 	./a.out
 
-# Failed constructor with 1 as argument test. GetLeg() returned 1 expected 2
 testRightIsoscelesLeg : testRightIsoscelesLeg.cc RightIsosceles.o PixelShape.o
 	g++ $(flags) $^
 	./a.out
@@ -36,7 +33,6 @@ testRectangleName : testRectangleName.cc Rectangle.o PixelShape.o
 	g++ $(flags) $^
 	./a.out
 
-# Failed constructor with one good and one bad argument test. GetLength() returned 0 (expected 1) and GetWidth() returned 9 (expected 4)
 testRectangleSides : testRectangleSides.cc Rectangle.o PixelShape.o
 	g++ $(flags) $^
 	./a.out

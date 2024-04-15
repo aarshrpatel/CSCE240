@@ -1,6 +1,6 @@
 // Copyright 2024 Aarsh Patel
-#ifndef PIXELSHAPE_H
-#define PIXELSHAPE_H
+#ifndef PIXELSHAPE_H_
+#define PIXELSHAPE_H_
 
 #include <string>
 
@@ -13,7 +13,7 @@ class PixelShape {
 
  public:
   // Constructor with default values
-  PixelShape(const std::string& name = "?", char pixel = '*');
+  explicit PixelShape(const std::string& name = "?", char pixel = '*');
 
   // Virtual destructor
   virtual ~PixelShape();
@@ -35,4 +35,4 @@ class PixelShape {
 
 }  // namespace CSCE240_Program6
 
-#endif  // PIXELSHAPE_H
+#endif  // PIXELSHAPE_H_

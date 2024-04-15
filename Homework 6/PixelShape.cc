@@ -4,32 +4,39 @@
 
 namespace CSCE240_Program6 {
 
-PixelShape::PixelShape(const std::string& name, char pixel) : name(name), pixel(pixel) {}
+PixelShape::PixelShape(const std::string& name, char pixel) :
+  name((name.length() < 1 || name == "") ? "?" : name),
+  pixel(pixel) {
+
+  if (pixel < 33 || pixel > 126) {
+    this->pixel = '*';
+  }
+}
 
 PixelShape::~PixelShape() {}
 
 void PixelShape::SetName(const std::string& newName) {
-    if (!newName.empty()) {
-        name = newName;
-    }
+  if (!newName.empty()) {
+    name = newName;
+  }
 }
 
 void PixelShape::SetPixel(char newPixel) {
-    if (newPixel >= 33 && newPixel <= 126) {
-        pixel = newPixel;
-    }
+  if (newPixel >= 33 && newPixel <= 126) {
+    pixel = newPixel;
+  }
 }
 
 std::string PixelShape::GetName() const {
-    return name;
+  return name;
 }
 
 char PixelShape::GetPixel() const {
-    return pixel;
+  return pixel;
 }
 
 void PixelShape::Print(bool fill) const {
-    std::cout << name << std::endl;
+  std::cout << name << std::endl;
 }
 
-} // namespace CSCE240_Program6
+}  // namespace CSCE240_Program6

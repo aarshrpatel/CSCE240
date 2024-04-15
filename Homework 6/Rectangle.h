@@ -1,6 +1,6 @@
 // Copyright 2024 Aarsh Patel
-#ifndef RECTANGLE_H
-#define RECTANGLE_H
+#ifndef RECTANGLE_H_
+#define RECTANGLE_H_
 
 #include "PixelShape.h"
 
@@ -13,7 +13,7 @@ class Rectangle : public PixelShape {
 
  public:
   // Constructor with default values
-  Rectangle(int length = 2, int width = 1, char pixel = '*');
+  explicit Rectangle(int length = 2, int width = 1, char pixel = '*');
 
   // Virtual destructor
   virtual ~Rectangle();
@@ -26,11 +26,11 @@ class Rectangle : public PixelShape {
 
   // Pure virtual operator*=
   Rectangle& operator*=(double factor) override;
-  
+
   // Print function
   void Print(bool fill = true) const override;
 };
 
-} // namespace CSCE240_Program6
+}  // namespace CSCE240_Program6
 
-#endif // RECTANGLE_H
+#endif  // RECTANGLE_H_
