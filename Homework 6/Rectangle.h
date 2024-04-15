@@ -8,8 +8,8 @@ namespace CSCE240_Program6 {
 
 class Rectangle : public PixelShape {
  private:
-  int length;
-  int width;
+  int length_;
+  int width_;
 
  public:
   // Constructor with default values

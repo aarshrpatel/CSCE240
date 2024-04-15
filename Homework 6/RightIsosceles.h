@@ -8,7 +8,7 @@ namespace CSCE240_Program6 {
 
 class RightIsosceles : public PixelShape {
  private:
-  int leg;
+  int leg_;
 
  public:
   // Constructor with default values

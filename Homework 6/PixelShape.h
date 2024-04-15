@@ -8,8 +8,8 @@ namespace CSCE240_Program6 {
 
 class PixelShape {
  private:
-  std::string name;
-  char pixel;
+  std::string name_;
+  char pixel_;
 
  public:
   // Constructor with default values
@@ -19,8 +19,8 @@ class PixelShape {
   virtual ~PixelShape();
 
   // Setters
-  void SetName(const std::string& newName);
-  void SetPixel(char newPixel);
+  void SetName(const std::string& new_name);
+  void SetPixel(char new_pixel);
 
   // Getters
   std::string GetName() const;
